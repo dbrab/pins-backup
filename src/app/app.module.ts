@@ -9,6 +9,7 @@ import { OrdersGridComponent } from './components/orders-grid/orders-grid.compon
 import { MetricsComponent } from './components/metrics/metrics.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { OrderFormComponent } from './components/order-form/order-form.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MetricsComponent,
     NavbarComponent,
     FooterComponent,
+    OrderFormComponent,
   ],
   imports: [
     BrowserModule,

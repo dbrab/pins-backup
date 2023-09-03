@@ -40,27 +40,20 @@
     </div>
   </div>
   <div class="p-5">
-    <!-- Responsive Table Container -->
     <div class="min-w-full overflow-x-auto rounded">
-      <!-- Alternate Responsive Table -->
       <table class="min-w-full align-middle text-sm">
-        <!-- Table Header -->
         <thead>
           <tr class="border-b-2 border-slate-100">
             <ng-container *ngFor="let colName of columnsNames">
-              <th class="min-w-[180px] py-3 px-3 text-left text-sm font-semibold tracking-wider text-slate-700">
+              <th class="min-w-[130px] py-3 px-3 text-left text-sm font-semibold tracking-wider text-slate-700">
                 {{ colName }}
               </th>
             </ng-container>
           </tr>
         </thead>
-
-        <!-- END Table Header -->
-
-        <!-- Table Body -->
         <tbody>
           <ng-container *ngFor="let order of orders">
-            <tr class="border-b border-slate-100">
+            <tr class="border-b border-slate-100" [ngClass]="{'bg-yellow-400': order.isOverdue}">
               <td class="py-3 pr-3 text-left text-slate-600">
                 {{order.nombreCliente}}
               </td>
@@ -104,9 +97,18 @@
                 </div>
               </td>
               <td class="p-3 font-medium">
-                <div
-                  class="inline-block rounded-full bg-green-100 px-2 py-1 text-xs font-semibold leading-4 text-black-800">
+                <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
                   ${{order.subtotal}}
+                </div>
+              </td>
+              <td class="p-3 font-medium">
+                <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
+                  {{order.facturaNo}}
+                </div>
+              </td>
+              <td class="p-3 font-medium">
+                <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
+                  {{order.capturadoPor}}
                 </div>
               </td>
               <!-- <td class="py-3 pl-3 text-right font-medium">
@@ -118,11 +120,7 @@
             </tr>
           </ng-container>
         </tbody>
-        <!-- END Table Body -->
       </table>
-      <!-- END Alternate Responsive Table -->
     </div>
-    <!-- END Responsive Table Container -->
   </div>
 </div>
-<!-- END Transactions -->

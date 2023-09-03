@@ -11,4 +11,5 @@ export interface Order {
   facturaNo: string;
   capturadoPor: string;
   status: string;
+  isOverdue?: boolean; // Cuando ha sido creada hace mas de 8 dias
 }
