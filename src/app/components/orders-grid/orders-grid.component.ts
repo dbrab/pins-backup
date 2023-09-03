@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Order } from 'src/app/models/order';
-
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-orders-grid',
   templateUrl: './orders-grid.component.html',
@@ -13,6 +13,15 @@ export class OrdersGridComponent {
 
   constructor() {
 
+  }
+  onclickExport(){
+    /* pass here the table id */
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.orders);
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    /* save to file */
+    XLSX.writeFile(wb, 'Ordenes al dia.xlsx');
   }
   getOrders(): any[] {
     return [
@@ -28,7 +37,7 @@ export class OrdersGridComponent {
         subtotal: 900,
         facturaNo: 'FAC1234',
         capturadoPor: 'Tania',
-        status: 'Completado'
+        status: 'Completado',
       },
       {
         nombreCliente: 'María González',
@@ -42,10 +51,10 @@ export class OrdersGridComponent {
         subtotal: 900,
         facturaNo: 'FAC1235',
         capturadoPor: 'Tania',
-        status: 'Pendiente'
+        status: 'Pendiente',
       },
       {
-        nombreCliente: 'María González',
+        nombreCliente: 'Andre-Pierre Gignac',
         nombreProducto: 'Pin Oxxo',
         fechaPedido: new Date('2023-09-02').toLocaleDateString(),
         cantidad: 100,
@@ -56,7 +65,21 @@ export class OrdersGridComponent {
         subtotal: 900,
         facturaNo: 'FAC1235',
         capturadoPor: 'Tania',
-        status: 'Cancelado'
+        status: 'Cancelado',
+      },
+      {
+        nombreCliente: 'Nahuel Guzman',
+        nombreProducto: 'Pin Tigres',
+        fechaPedido: new Date('2023-08-22').toLocaleDateString(),
+        cantidad: 100,
+        precio: 500,
+        anticipo: 200,
+        liquidacion: 800,
+        pagoTotal: 1000,
+        subtotal: 900,
+        facturaNo: 'FAC1235',
+        capturadoPor: 'Tania',
+        status: 'Cancelado',
       },
       // Más objetos de tipo Pedido aquí
     ];
