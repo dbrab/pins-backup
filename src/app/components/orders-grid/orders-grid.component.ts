@@ -4,19 +4,32 @@ import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-orders-grid',
   templateUrl: './orders-grid.component.html',
-  styleUrls: ['./orders-grid.component.css']
+  styleUrls: ['./orders-grid.component.css'],
 })
 export class OrdersGridComponent implements OnInit {
   orders: Order[] = [];
-  columnsNames: string[] = ['Cliente', 'Producto', 'Fecha creación', 'Status', 'Cantidad', 'Precio', 'Anticipo', 'Liquidación', 'Pago total', 'Subtotal', 'Factura #.', 'Capturado por'];
+  columnsNames: string[] = [
+    'Cliente',
+    'Producto',
+    'Fecha creación',
+    'Status',
+    'Cantidad',
+    'Precio',
+    'Anticipo',
+    'Liquidación',
+    'Pago total',
+    'Subtotal',
+    'Factura #.',
+    'Capturado por',
+  ];
   public dropdownOpen = false;
 
-  constructor() {
-    this.setIsOverdue();
-  }
+  constructor() {}
   ngOnInit(): void {
     this.orders = this.getOrders();
-    this.setIsOverdue();
+    this.orders.forEach((order) => {
+      this.calculateOverdue(order);
+    });
   }
   onclickExport() {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.orders);
@@ -24,11 +37,19 @@ export class OrdersGridComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, 'Ordenes al dia.xlsx');
   }
-  setIsOverdue() {
-    console.log(new Date())
-    this.orders.forEach((order) => {
-      order.isOverdue = new Date(order.fechaPedido) > new Date();
-    })
+  calculateOverdue(order: Order) {
+    const today = new Date().getTime();
+    const fechaPedidoDate = new Date(order.fechaPedido).getTime();
+    const diffInMs = today - fechaPedidoDate;
+    const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+    if (diffInDays >= 7) {
+      order.isOverdue = true;
+    }
+  }
+  onclickStatus(status: string){
+    
+    this.orders = this.orders.filter( x=> x.status === status)
   }
 
   getOrders(): any[] {
@@ -106,7 +127,7 @@ export class OrdersGridComponent implements OnInit {
       {
         nombreCliente: 'Santander',
         nombreProducto: 'Pin Santander',
-        fechaPedido: new Date('2023-09-01').toLocaleDateString(),
+        fechaPedido: new Date('2023-08-01').toLocaleDateString(),
         cantidad: 150,
         precio: 1000,
         anticipo: 200,
@@ -120,7 +141,7 @@ export class OrdersGridComponent implements OnInit {
       {
         nombreCliente: 'BBVA',
         nombreProducto: 'Pin BBVA',
-        fechaPedido: new Date('2023-09-01').toLocaleDateString(),
+        fechaPedido: new Date('2023-07-21').toLocaleDateString(),
         cantidad: 150,
         precio: 1000,
         anticipo: 200,

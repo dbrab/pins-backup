@@ -6,9 +6,9 @@
         <!-- Left Section -->
         <div class="flex items-center space-x-2 lg:space-x-6">
           <!-- Logo -->
-          <a href="javascript:void(0)"
+          <a [routerLink]="['/home']"
             class="group inline-flex items-center space-x-1.5 text-lg font-bold tracking-wide text-slate-900 hover:text-slate-600">
-            <a href="#" class="flex items-center py-2 px-2">
+            <a [routerLink]="['/home']"class="flex items-center py-2 px-2">
               <img src="/assets/images/pins-logo.svg" class="h-12 w-12 mr-2" alt="Logo" />
             </a>
             <span>Pins de México</span>
@@ -17,16 +17,12 @@
 
           <!-- Desktop Navigation -->
           <nav class="hidden items-center gap-1.5 lg:flex">
-            <a [routerLink]="['/home']"
-              class="group flex items-center space-x-2 rounded-lg bg-violet-50 px-2.5 py-1.5 text-sm font-medium text-violet-600">
-              <span>Home</span>
-            </a>
             <a [routerLink]="['/orders']"
               class="group flex items-center space-x-2 rounded-lg bg-violet-50 px-2.5 py-1.5 text-sm font-medium text-violet-600">
               <span>Pedidos</span>
             </a>
             <div
-              class="group-flex items-center justify-center space-x-2 rounded-lg   border border-violet-700 bg-violet-700 px-3 py-2 text-sm font-semibold leading-5 text-white hover:border-violet-600 hover:bg-violet-600 hover:text-white focus:ring focus:ring-violet-400 focus:ring-opacity-50 active:border-violet-700 active:bg-violet-700">
+              class="group-flex items-center justify-center space-x-2 rounded-lg  border border-violet-700 bg-violet-700 px-3 py-2 text-sm font-semibold leading-5 text-white hover:border-violet-600 hover:bg-violet-600 hover:text-white focus:ring focus:ring-violet-400 focus:ring-opacity-50 active:border-violet-700 active:bg-violet-700">
               <span>Nuevo pedido</span>
             </div>
           </nav>
