@@ -1,0 +1,128 @@
+<!-- Transactions -->
+<div class="flex flex-col rounded-lg border bg-white md:col-span-3">
+  <div
+    class="flex flex-col items-center justify-between gap-4 border-b border-slate-100 p-5 text-center sm:flex-row sm:text-left">
+    <div>
+      <h2 class="mb-0.5 font-semibold">Todos los pedidos</h2>
+      <div class="relative inline-block text-left">
+        <div>
+          <button type="button" (click)="dropdownOpen = !dropdownOpen"
+            class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            id="menu-button">
+            Filtrar por estatus
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24"
+              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M6 9l6 6l6 -6"></path>
+            </svg>
+          </button>
+        </div>
+        <div [hidden]="!dropdownOpen"
+          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          <div class="py-1" role="none">
+            <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+              id="menu-item-0">Completado</a>
+            <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+              id="menu-item-0">Pendiente</a>
+            <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+              id="menu-item-0">Cancelado</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="javascript:void(0)"
+        class="inline-flex items-center justify-center space-x-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold leading-5 text-slate-800 hover:border-violet-300 hover:text-violet-800 active:border-slate-200">
+        Exportar a Excel
+      </a>
+    </div>
+  </div>
+  <div class="p-5">
+    <!-- Responsive Table Container -->
+    <div class="min-w-full overflow-x-auto rounded">
+      <!-- Alternate Responsive Table -->
+      <table class="min-w-full align-middle text-sm">
+        <!-- Table Header -->
+        <thead>
+          <tr class="border-b-2 border-slate-100">
+            <ng-container *ngFor="let colName of columnsNames">
+              <th class="min-w-[180px] py-3 px-3 text-left text-sm font-semibold tracking-wider text-slate-700">
+                {{ colName }}
+              </th>
+            </ng-container>
+          </tr>
+        </thead>
+
+        <!-- END Table Header -->
+
+        <!-- Table Body -->
+        <tbody>
+          <ng-container *ngFor="let order of orders">
+            <tr class="border-b border-slate-100">
+              <td class="py-3 pr-3 text-left text-slate-600">
+                {{order.nombreCliente}}
+              </td>
+              <td class="p-3">
+                <a href="javascript:void(0)" class="font-medium text-violet-500 hover:text-violet-700">
+                  {{order.nombreProducto}}</a>
+              </td>
+              <td class="p-3 font-medium text-slate-600">
+                {{ order.fechaPedido}}
+              </td>
+              <td class="p-3 font-medium text-slate-600">
+                <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800"
+                  [ngClass]="{
+                'bg-green-100': order.status === 'Completado',
+                'bg-red-100': order.status === 'Cancelado',
+                'bg-yellow-100': order.status === 'Pendiente'
+              }">
+                  {{order.status}}
+                </div>
+              </td>
+              <td class="p-3 text-left">{{order.cantidad}}</td>
+              <td class="p-3 font-medium">
+                <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
+                  ${{order.precio}} MXN
+                </div>
+              </td>
+              <td class="p-3 font-medium">
+                <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
+                  ${{order.anticipo}} MXN
+                </div>
+              </td>
+              <td class="p-3 font-medium">
+                <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
+                  ${{order.liquidacion}}
+                </div>
+              </td>
+              <td class="p-3 font-medium">
+                <div
+                  class="inline-block rounded-full bg-green-100 px-2 py-1 text-xs font-semibold leading-4 text-black-800">
+                  ${{order.pagoTotal}}
+                </div>
+              </td>
+              <td class="p-3 font-medium">
+                <div
+                  class="inline-block rounded-full bg-green-100 px-2 py-1 text-xs font-semibold leading-4 text-black-800">
+                  ${{order.subtotal}}
+                </div>
+              </td>
+              <!-- <td class="py-3 pl-3 text-right font-medium">
+                <a href="javascript:void(0)"
+                  class="group inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1.5 font-medium text-slate-800 hover:border-violet-300 hover:text-violet-800 active:border-slate-200">
+                  <span>View</span>
+                </a>
+              </td> -->
+            </tr>
+          </ng-container>
+        </tbody>
+        <!-- END Table Body -->
+      </table>
+      <!-- END Alternate Responsive Table -->
+    </div>
+    <!-- END Responsive Table Container -->
+  </div>
+</div>
+<!-- END Transactions -->
