@@ -14,7 +14,7 @@ export class OrdersGridComponent {
   constructor() {
 
   }
-  onclickExport(){
+  onclickExport() {
     /* pass here the table id */
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.orders);
     /* generate workbook and add the worksheet */
@@ -81,7 +81,90 @@ export class OrdersGridComponent {
         capturadoPor: 'Tania',
         status: 'Cancelado',
       },
-      // Más objetos de tipo Pedido aquí
+      {
+        nombreCliente: 'Juan Pérez',
+        nombreProducto: 'Pin Concha Pan',
+        fechaPedido: new Date('2023-09-01').toLocaleDateString(),
+        cantidad: 150,
+        precio: 1000,
+        anticipo: 200,
+        liquidacion: 800,
+        pagoTotal: 1000,
+        subtotal: 900,
+        facturaNo: 'FAC1234',
+        capturadoPor: 'Tania',
+        status: 'Completado',
+      },
+      {
+        nombreCliente: 'Juan Pérez',
+        nombreProducto: 'Pin Concha Pan',
+        fechaPedido: new Date('2023-09-01').toLocaleDateString(),
+        cantidad: 150,
+        precio: 1000,
+        anticipo: 200,
+        liquidacion: 800,
+        pagoTotal: 1000,
+        subtotal: 900,
+        facturaNo: 'FAC1234',
+        capturadoPor: 'Tania',
+        status: 'Completado',
+      },
+      {
+        nombreCliente: 'Juan Pérez',
+        nombreProducto: 'Pin Concha Pan',
+        fechaPedido: new Date('2023-09-01').toLocaleDateString(),
+        cantidad: 150,
+        precio: 1000,
+        anticipo: 200,
+        liquidacion: 800,
+        pagoTotal: 1000,
+        subtotal: 900,
+        facturaNo: 'FAC1234',
+        capturadoPor: 'Tania',
+        status: 'Completado',
+      },
+      {
+        nombreCliente: 'Juan Pérez',
+        nombreProducto: 'Pin Concha Pan',
+        fechaPedido: new Date('2023-09-01').toLocaleDateString(),
+        cantidad: 150,
+        precio: 1000,
+        anticipo: 200,
+        liquidacion: 800,
+        pagoTotal: 1000,
+        subtotal: 900,
+        facturaNo: 'FAC1234',
+        capturadoPor: 'Tania',
+        status: 'Completado',
+      },
+      {
+        nombreCliente: 'Juan Pérez',
+        nombreProducto: 'Pin Concha Pan',
+        fechaPedido: new Date('2023-09-01').toLocaleDateString(),
+        cantidad: 150,
+        precio: 1000,
+        anticipo: 200,
+        liquidacion: 800,
+        pagoTotal: 1000,
+        subtotal: 900,
+        facturaNo: 'FAC1234',
+        capturadoPor: 'Tania',
+        status: 'Completado',
+      },
+      {
+        nombreCliente: 'Juan Pérez',
+        nombreProducto: 'Pin Concha Pan',
+        fechaPedido: new Date('2023-09-01').toLocaleDateString(),
+        cantidad: 150,
+        precio: 1000,
+        anticipo: 200,
+        liquidacion: 800,
+        pagoTotal: 1000,
+        subtotal: 900,
+        facturaNo: 'FAC1234',
+        capturadoPor: 'Tania',
+        status: 'Completado',
+      },
     ];
   }
 }
