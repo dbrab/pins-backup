@@ -1,15 +1,15 @@
 export interface Order {
-  nombreCliente: string;
-  nombreProducto: string;
-  fechaPedido: Date;
-  cantidad: number;
-  precio: number;
-  anticipo: number;
-  liquidacion: number;
-  pagoTotal: number;
+  clientName: string;
+  productName: string;
+  createDate: Date;
+  quantity: number;
+  price: number;
+  advancePayment: number;
+  settlement: number;
+  total: number;
   subtotal: number;
-  facturaNo: string;
-  capturadoPor: string;
+  invoiceNumber: string;
+  createdBy: string;
   status: string;
   isOverdue?: boolean; // Cuando ha sido creada hace mas de 8 dias
 }

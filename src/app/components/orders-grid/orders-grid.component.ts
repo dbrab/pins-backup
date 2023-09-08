@@ -27,7 +27,7 @@ export class OrdersGridComponent implements OnInit {
   setIsOverdue() {
     console.log(new Date())
     this.orders.forEach((order) => {
-      order.isOverdue = new Date(order.fechaPedido) > new Date();
+      order.isOverdue = new Date(order.createDate) > new Date();
     })
   }
 
