@@ -6,29 +6,17 @@
       <h2 class="mb-0.5 font-semibold">Todos los pedidos</h2>
       <div class="relative inline-block text-left">
         <div>
-          <button type="button" (click)="dropdownOpen = !dropdownOpen"
-            class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-            id="menu-button">
-            Filtrar por estatus
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24"
-              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M6 9l6 6l6 -6"></path>
-            </svg>
-          </button>
+    <fieldset class="mt-4">
+      <legend class="sr-only">Filtrar</legend>
+      <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+        <div *ngFor="let status of orderStatuses" class="flex items-center">
+          <input [id]="status.id" name="notification-method" type="radio" [checked]="selectedStatus === status.id"
+            class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" (click)="onclickStatus(status)">
+          <label [for]="status.id" class="ml-3 block text-sm font-medium leading-6 text-gray-900">{{status.label}}</label>
         </div>
-        <div [hidden]="!dropdownOpen"
-          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-          role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-          <div class="py-1" role="none">
-            <a (click)="onclickStatus('Completado')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-              id="menu-item-0">Completado</a>
-            <a (click)="onclickStatus('Pendiente')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-              id="menu-item-0">Pendiente</a>
-            <a (click)="onclickStatus('Cancelado')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-              id="menu-item-0">Cancelado</a>
-          </div>
+      </div>
+    </fieldset>
+
         </div>
       </div>
     </div>
@@ -62,7 +50,7 @@
                   {{order.productName}}</a>
               </td>
               <td class="p-3 font-medium text-slate-600">
-                {{ order.createDate}}
+                {{ order.createDate | date: 'dd/MM/yyyy'}}
               </td>
               <td class="p-3 font-medium text-slate-600">
                 <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800"
@@ -74,7 +62,7 @@
                   {{order.status}}
                 </div>
               </td>
-              <td class="p-3 text-left">{{order.quantity}}</td>
+              <td class="p-2 text-left">{{order.quantity}}</td>
               <td class="p-3 font-medium">
                 <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
                   ${{order.price}} MXN

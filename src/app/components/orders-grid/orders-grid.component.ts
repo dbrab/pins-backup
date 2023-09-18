@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { Order } from '../../models/order';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-orders-grid',
   templateUrl: './orders-grid.component.html',
@@ -8,6 +9,7 @@ import { Order } from '../../models/order';
 })
 export class OrdersGridComponent implements OnInit {
   orders: Order[] = [];
+  ordersCopy: Order[] = [];
   columnsNames: string[] = [
     'Cliente',
     'Producto',
@@ -23,13 +25,18 @@ export class OrdersGridComponent implements OnInit {
     'Capturado por',
   ];
   public dropdownOpen = false;
+  orderStatuses = [
+    { id: 'Todos', label: 'Todos' },
+    { id: 'Completado', label: 'Completado' },
+    { id: 'Pendiente', label: 'Pendiente' },
+    // add more options
+  ];
+  selectedStatus: string = 'Todos';
 
-  constructor() {}
+  constructor(public date: DatePipe) {}
   ngOnInit(): void {
-    this.orders = this.getOrders();
-    this.orders.forEach((order) => {
-      // this.calculateOverdue(order);
-    });
+    this.ordersCopy = this.getOrders();
+    this.orders = structuredClone(this.ordersCopy);
   }
   onclickExport() {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.orders);
@@ -47,8 +54,14 @@ export class OrdersGridComponent implements OnInit {
       order.isOverdue = true;
     }
   }
-  onclickStatus(status: string) {
-    this.orders = this.orders.filter((x) => x.status === status);
+  onclickStatus(status: any) {
+    if (status.id === 'Todos') {
+      return (this.orders = this.ordersCopy);
+    } else {
+      this.orders = this.ordersCopy.filter((x) => x.status === status.id);
+    }
+
+    return this.orders;
   }
 
   getOrders(): Order[] {
@@ -149,7 +162,7 @@ export class OrdersGridComponent implements OnInit {
         subtotal: 900,
         invoiceNumber: 'FAC1234',
         createdBy: 'Tania',
-        status: 'Completed',
+        status: 'Completado',
       },
       {
         clientName: 'Banorte',
@@ -163,7 +176,7 @@ export class OrdersGridComponent implements OnInit {
         subtotal: 900,
         invoiceNumber: 'FAC1234',
         createdBy: 'Tania',
-        status: 'Completed',
+        status: 'Completado',
       },
       {
         clientName: 'INVEX',
@@ -177,7 +190,7 @@ export class OrdersGridComponent implements OnInit {
         subtotal: 900,
         invoiceNumber: 'FAC1234',
         createdBy: 'Tania',
-        status: 'Completed',
+        status: 'Completado',
       },
       {
         clientName: 'Juan Pérez',
@@ -191,7 +204,7 @@ export class OrdersGridComponent implements OnInit {
         subtotal: 900,
         invoiceNumber: 'FAC1234',
         createdBy: 'Tania',
-        status: 'Completed',
+        status: 'Completado',
       },
     ];
   }

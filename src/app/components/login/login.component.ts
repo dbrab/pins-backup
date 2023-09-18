@@ -10,7 +10,6 @@ import { AuthService } from '@auth0/auth0-angular';
 export class LoginComponent {
   constructor(private router: Router, private auth: AuthService) {}
   onclickLogin() {
-    this.auth.loginWithPopup({
-    });
+    this.auth.loginWithRedirect({}).subscribe((res) => { console.log(res); });
   }
 }

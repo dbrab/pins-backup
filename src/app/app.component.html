@@ -1,15 +1,7 @@
-<app-login></app-login>
-<!-- <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-  <ul *ngIf="auth.user$ | async as user">
-    <li>{{user.name}}</li>
-    <li>{{user.email}}</li>
-    <li><img src="{{user.picture}}"/></li>
-  </ul>>
-<button (click)="auth.logout()">Logout</button>
+<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
 </ng-container>
 <ng-template #loggedOut>
-  <button (click)="auth.loginWithRedirect()">Login</button> -->
-<!-- </ng-template> -->
-<!-- <app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer> -->
+  <app-login></app-login>
+</ng-template>
