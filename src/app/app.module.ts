@@ -9,11 +9,13 @@ import { OrdersGridComponent } from './components/orders-grid/orders-grid.compon
 import { MetricsComponent } from './components/metrics/metrics.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { OrderFormComponent } from './components/order-form/order-form.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from './environments/environments';
 import { DatePipe } from '@angular/common';
 import { CreateOrderComponent } from './components/create-order/create-order.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { CreateOrderComponent } from './components/create-order/create-order.com
     MetricsComponent,
     NavbarComponent,
     FooterComponent,
-    OrderFormComponent,
     CreateOrderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatButtonModule,
     AuthModule.forRoot(environment.auth),
   ],
   providers: [DatePipe],

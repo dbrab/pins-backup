@@ -9,7 +9,5 @@ import { AuthService } from '@auth0/auth0-angular';
 export class AppComponent {
   title = 'pins-mx-2023';
 
-  constructor(public auth: AuthService) {
-    console.log(auth);
-  }
+  constructor(public auth: AuthService) {}
 }
