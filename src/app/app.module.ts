@@ -10,6 +10,8 @@ import { MetricsComponent } from './components/metrics/metrics.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment } from './environments/environments';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,10 @@ import { OrderFormComponent } from './components/order-form/order-form.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule.forRoot(environment.auth),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
