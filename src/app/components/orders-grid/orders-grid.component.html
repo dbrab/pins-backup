@@ -50,7 +50,7 @@
                   {{order.productName}}</a>
               </td>
               <td class="p-3 font-medium text-slate-600">
-                {{ order.createDate | date: 'dd/MM/yyyy'}}
+                {{ order.createdDateTime | date: 'dd/MM/yyyy'}}
               </td>
               <td class="p-3 font-medium text-slate-600">
                 <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800"
@@ -65,19 +65,15 @@
               <td class="p-2 text-left">{{order.quantity}}</td>
               <td class="p-3 font-medium">
                 <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
-                  ${{order.price}} MXN
+                  ${{order.price}}
                 </div>
               </td>
               <td class="p-3 font-medium">
                 <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
-                  ${{order.advancePayment}} MXN
+                  ${{order.payInAdvance}}
                 </div>
               </td>
-              <td class="p-3 font-medium">
-                <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800">
-                  ${{order.settlement}}
-                </div>
-              </td>
+
               <td class="p-3 font-medium">
                 <div
                   class="inline-block rounded-full bg-green-100 px-2 py-1 text-xs font-semibold leading-4 text-black-800">

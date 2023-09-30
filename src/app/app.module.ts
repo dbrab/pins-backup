@@ -16,6 +16,9 @@ import { CreateOrderComponent } from './components/create-order/create-order.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { OrderService } from './components/services/order.service';
+import { HttpClientModule } from '@angular/common/http';
+import { StatusService } from './components/services/status.service';
 
 @NgModule({
   declarations: [
@@ -31,12 +34,13 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     MatDialogModule,
     MatMenuModule,
     MatButtonModule,
     AuthModule.forRoot(environment.auth),
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, OrderService,StatusService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

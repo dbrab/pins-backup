@@ -1,15 +1,21 @@
+
 export interface Order {
+  id: number;
   clientName: string;
   productName: string;
-  createDate: Date;
+  status: string;
   quantity: number;
   price: number;
-  advancePayment: number;
-  settlement: number;
   total: number;
   subtotal: number;
-  invoiceNumber: string;
+  payInAdvance: number;
+  createdDateTime: string;
+  updatedDateTime: string;
   createdBy: string;
-  status: string;
-  isOverdue?: boolean; // Cuando ha sido creada hace mas de 8 dias
+  updatedBy: string;
+  invoiceNumber: string;
+  paymentDate: string;
+  trackingNumber: string;
+
+  isOverdue?: boolean; // When the order has been created more than 7 days ago
 }
