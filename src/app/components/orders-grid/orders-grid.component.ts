@@ -15,6 +15,7 @@ export class OrdersGridComponent implements OnInit {
   orders: Order[] = [];
   ordersCopy: Order[] = [];
   columnsNames: string[] = [
+    'Id',
     'Cliente',
     'Producto',
     'Fecha creación',
@@ -44,12 +45,13 @@ export class OrdersGridComponent implements OnInit {
   selectOrders() {
     this.orderService.getOrders().subscribe((data: Order[]) => {
       this.orders = data;
-      this.orders = structuredClone(this.ordersCopy);
+      this.ordersCopy = structuredClone(this.orders);
     });
   }
   selectStatus() {
     this.statusService.getStatus().subscribe((data: Status[]) => {
       this.orderStatuses = data;
+      this.orderStatuses.push({ key: 'Todos', name: 'Todos' })
     });
   }
   onclickExport() {
@@ -69,10 +71,10 @@ export class OrdersGridComponent implements OnInit {
     }
   }
   onclickStatus(status: any) {
-    if (status.id === 'Todos') {
+    if (status.key === 'Todos') {
       return (this.orders = this.ordersCopy);
     } else {
-      this.orders = this.ordersCopy.filter((x) => x.status === status.id);
+      this.orders = this.ordersCopy.filter((x) => x.statusKey === status.key);
     }
 
     return this.orders;

@@ -10,9 +10,9 @@
       <legend class="sr-only">Filtrar</legend>
       <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
         <div *ngFor="let status of orderStatuses" class="flex items-center">
-          <input [id]="status.id" name="notification-method" type="radio" [checked]="selectedStatus === status.id"
+          <input [id]="status.key" name="notification-method" type="radio" [checked]="selectedStatus === status.key"
             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" (click)="onclickStatus(status)">
-          <label [for]="status.id" class="ml-3 block text-sm font-medium leading-6 text-gray-900">{{status.label}}</label>
+          <label [for]="status.key" class="ml-3 block text-sm font-medium leading-6 text-gray-900">{{status.name}}</label>
         </div>
       </div>
     </fieldset>
@@ -42,6 +42,9 @@
         <tbody>
           <ng-container *ngFor="let order of orders">
             <tr class="border-b border-slate-100" [ngClass]="{'bg-yellow-100': order.isOverdue}">
+                <td class="py-3 pr-3 text-left text-slate-600">
+                  {{order.id}}
+                </td>
               <td class="py-3 pr-3 text-left text-slate-600">
                 {{order.clientName}}
               </td>
@@ -55,11 +58,11 @@
               <td class="p-3 font-medium text-slate-600">
                 <div class="inline-block rounded-full px-2 py-1 text-xs font-semibold leading-4 text-black-800"
                   [ngClass]="{
-                'bg-green-100': order.status === 'Completado',
-                'bg-red-100': order.status === 'Cancelado',
-                'bg-yellow-100': order.status === 'Pendiente'
+                'bg-green-100': order.status.key === 'Completed',
+                'bg-red-100': order.status.key === 'Canceled',
+                'bg-yellow-100': order.status.key === 'Pending'
               }">
-                  {{order.status}}
+                  {{order.status.name}}
                 </div>
               </td>
               <td class="p-2 text-left">{{order.quantity}}</td>

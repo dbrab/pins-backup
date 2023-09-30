@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,7 +29,7 @@ namespace PinsMexico.Controllers
           {
               return NotFound();
           }
-            return await _context.Orders.ToListAsync();
+            return await _context.Orders.Include(x => x.Status).ToListAsync();
         }
 
         // GET: api/Orders/5

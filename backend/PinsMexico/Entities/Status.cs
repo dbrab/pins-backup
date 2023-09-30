@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace PinsMexico.Entities
 {
@@ -7,5 +7,6 @@ namespace PinsMexico.Entities
         [Key]
         public string Key { get; set; }
         public string Name { get; set; }
-    }
+
+  }
 }
