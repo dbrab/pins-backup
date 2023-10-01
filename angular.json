@@ -46,6 +46,14 @@
               ],
               "outputHashing": "all"
             },
+            "staging":{
+              "fileReplacements": [
+                {
+                  "replace": "src/app/environments/environment.ts",
+                  "with": "src/app/environments/environment.staging.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -62,6 +70,10 @@
           "configurations": {
             "production": {
               "browserTarget": "pins-mx-2023:build:production"
+            },
+            "staging":{
+              "browserTarget": "pins-mx-2023:build:staging"
+
             },
             "development": {
               "browserTarget": "pins-mx-2023:build:development"
