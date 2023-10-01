@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   url:"https://pinsmexico.azurewebsites.net/api",
   auth: {
     domain: 'dev-pfnzd46sw3g6fkmo.us.auth0.com',
