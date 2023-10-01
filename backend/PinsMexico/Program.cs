@@ -24,7 +24,7 @@ var app = builder.Build();
 
     // Configure CORS for development (You can adjust this later for production if needed)
     app.UseCors(builder => builder
-       .WithOrigins("http://localhost:4200")
+       .AllowAnyOrigin()
        .AllowAnyMethod()
        .AllowAnyHeader()
     );
